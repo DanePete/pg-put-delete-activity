@@ -34,6 +34,38 @@ router.post('/',  (req, res) => {
     });
 });
 
+
+/**
+ * App Delete
+ * Removes individual array items by id
+ */
+//  app.delete('/result:id', function(req, response) {
+//   bundleCalculations.splice(req.params.id, 1);
+//   response.send(bundleCalculations);
+// });
+
+router.delete('/:id', (req, res) => {
+  console.log('params', req.params);
+  let sqlQuery = `
+    DELETE FROM books WHERE id=$1;
+  `;
+
+  let sqlParams = [
+    req.params.id, // $1
+  ]
+
+  pool.query(sqlQuery, sqlParams)
+    .then((dbRes) => {
+        res.send(201);
+    })
+    .catch((err) => {
+        console.log("post error", err);
+        res.sendStatus(500);
+    });
+});
+
+
+
 // TODO - PUT
 // Updates a book to show that it has been read
 // Request must include a parameter indicating what book to update - the id
