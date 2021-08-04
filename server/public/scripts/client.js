@@ -7,6 +7,7 @@ $(document).ready(function(){
 function addClickHandlers() {
   $('#submitBtn').on('click', handleSubmit);
   $(document).on('click', '#delete', deleteBook);
+  $(document).on('click', '#readBtn', markAsRead);
   // TODO - Add code for edit & delete buttons
 }
 
@@ -33,6 +34,7 @@ function addBook(bookToAdd) {
     });
 }
 
+// Delete the book
 function deleteBook() {
   let id = $(this).closest('tr').data('id');
   $.ajax({
@@ -43,7 +45,21 @@ function deleteBook() {
     refreshBooks(response);
   }).catch(function(error){
     console.log('error in GET', error);
-  });;
+  });
+}
+
+// Mark the book as read
+function markAsRead() {
+  let id = $(this).closest('tr').data('id');
+  $.ajax({
+    url: `/books/${id}`,
+    type: 'PUT',
+  }).then(function(response) {
+    console.log(response);
+    refreshBooks(response);
+  }).catch(function(error){
+    console.log('error in GET', error);
+  });
 }
 
 // refreshBooks will get all books from the server and render to page
@@ -71,7 +87,9 @@ function renderBooks(books) {
       <tr data-id=${book.id}>
         <td>${book.title}</td>
         <td>${book.author}</td>
+        <td>${book.isRead}</td>
         <td><button id="delete" class="btn btn-danger">DELETE</button></td>
+        <td><button id="readBtn" class="btn btn-danger">Finished Reading</button></td>
       </tr>
     `);
   }
