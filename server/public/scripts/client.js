@@ -8,6 +8,8 @@ function addClickHandlers() {
   $('#submitBtn').on('click', handleSubmit);
   $(document).on('click', '#delete', deleteBook);
   $(document).on('click', '#readBtn', markAsRead);
+  $(document).on('click', '#editBtn', editBook);
+  
   // TODO - Add code for edit & delete buttons
 }
 
@@ -62,6 +64,21 @@ function markAsRead() {
   });
 }
 
+// Edit the book
+function editBook() {
+  console.log($(this).closest('tr').data('id'));
+//   $('#bookShelf').append(`
+//   <tr data-id=${book.id}>
+//     <td>${book.title}</td>
+//     <td>${book.author}</td>
+//     <td>${book.isRead}</td>
+//     <td><button id="delete" class="btn btn-danger">DELETE</button></td>
+//     <td><button id="readBtn" class="btn btn-success">Mark as Read</button></td>
+//     <td><button id="editBtn" class="btn btn-success">Edit</button></td>
+//   </tr>
+// `);
+}
+
 // refreshBooks will get all books from the server and render to page
 function refreshBooks() {
   $.ajax({
@@ -89,7 +106,8 @@ function renderBooks(books) {
         <td>${book.author}</td>
         <td>${book.isRead}</td>
         <td><button id="delete" class="btn btn-danger">DELETE</button></td>
-        <td><button id="readBtn" class="btn btn-danger">Mark as Read</button></td>
+        <td><button id="readBtn" class="btn btn-success">Mark as Read</button></td>
+        <td><button id="editBtn" class="btn btn-success">Edit</button></td>
       </tr>
     `);
   }

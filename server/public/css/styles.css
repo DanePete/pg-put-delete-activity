@@ -4,7 +4,7 @@ body {
 }
 
 header {
-  background-color: brown;
+  background-color: #e91e63;
   padding: 1em;
   margin-bottom: 1em;
 }
@@ -19,9 +19,11 @@ main {
 }
 
 section {
-  background-color: linen;
+  background-color: #ffffff29;
   padding: .5em;
   margin-bottom: 1em;
+  box-shadow: 1px 1px 9px -1px #ffffff91;
+  border-radius: 9px;
 }
 
 th {
