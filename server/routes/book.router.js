@@ -66,10 +66,7 @@ router.delete('/:id', (req, res) => {
 
 
 router.put('/:id', (req, res) => {
-  console.log('params', req.params);
-  console.log('body', req.body.isread);
   let isRead = req.body.isread;
-  console.log('isread', isRead);
   if(isRead === true || isRead === 'true' || isRead === null) {
     isRead = false;
   } else if(isRead === false || isRead === 'false') {

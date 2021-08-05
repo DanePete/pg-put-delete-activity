@@ -9,7 +9,7 @@ function addClickHandlers() {
   $('#submitBtn').on('click', handleSubmit);
   $(document).on('click', '#delete', deleteBook);
   $(document).on('click', '#readBtn', markAsRead);
-  $(document).on('click', '#editBtn', editBook);
+  // $(document).on('click', '#editBtn', editBook);  
   $(document).on('click', '#unread', editBook);
   // TODO - Add code for edit & delete buttons
 }
