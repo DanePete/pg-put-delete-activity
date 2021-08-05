@@ -37,4 +37,14 @@ th {
   background: #00968833 !important;
 }
 
+#dance {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 275px;
+}
+
+#dance img {
+  width: 50px;
+}
 
