@@ -67,6 +67,37 @@ router.delete('/:id', (req, res) => {
 
 router.put('/:id', (req, res) => {
   console.log('params', req.params);
+  console.log('body', req.body.isread);
+  let isRead = req.body.isread;
+  console.log('isread', isRead);
+  if(isRead === true || isRead === 'true' || isRead === null) {
+    isRead = false;
+  } else if(isRead === false || isRead === 'false') {
+    isRead = true;
+  }
+  let sqlQuery = `
+    UPDATE books SET "isRead" = $1 WHERE id = $2;
+  `;
+
+  let sqlParams = [
+    isRead,
+    req.params.id, // $1
+  ]
+
+  console.log('sql params', sqlParams);
+
+  pool.query(sqlQuery, sqlParams)
+    .then((dbRes) => {
+        res.send(201);
+    })
+    .catch((err) => {
+        console.log("post error", err);
+        res.sendStatus(500);
+    });
+});
+
+router.put('/:id', (req, res) => {
+  console.log('params', req.params);
   let sqlQuery = `
     UPDATE books SET "isRead" ='TRUE' WHERE id = $1;
   `;
